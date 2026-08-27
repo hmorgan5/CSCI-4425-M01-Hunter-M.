@@ -1,0 +1,79 @@
+# Generated with M365 Copilot (GPT-5) to create a general-purpose .gitignore
+# Used for: generating a macOS-friendly .gitignore that excludes common unnecessary files
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# Environment files
+.env
+.env.local
+.env.*
+
+# IDEs and editors
+
+# VS Code
+.vscode/
+
+# JetBrains IDEs
+.idea/
+*.iml
+
+# Visual Studio
+.vs/
+
+# Build/output directories
+build/
+dist/
+out/
+target/
+bin/
+
+# Dependency directories
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.python-version
+
+# Coverage reports
+coverage/
+.coverage
+
+# Package manager files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Archives
+*.zip
+*.tar
+*.gz
+*.7z
+
+# Git metadata backups
+*.orig
