@@ -87,7 +87,9 @@ with open("README.md", "w") as f:
 
     f.write("## First 5 Rows\n\n")
     #f.write(dataframe.head().to_markdown())
+    f.write("```\n")
     f.write(dataframe.head().to_string())
+    f.write("\n```\n")
     f.write("\n\n")
 
     f.write("## Summary Statistics\n\n")
