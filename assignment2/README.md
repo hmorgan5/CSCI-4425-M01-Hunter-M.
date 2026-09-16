@@ -119,11 +119,11 @@ max       15.000100     52.000000    141.909091     34.066667  35682.000000   12
 | Model | MSE | RMSE |
 |-------|------|------|
 | Linear Regression | 0.5290 | 0.7273 |
-| Neural Network | 0.4074 | 0.6382 |
+| Neural Network | 0.4473 | 0.6688 |
 
 ## Analysis
 
-The Neural Network performed better because it achieved lower MSE and RMSE values on the test set. Lower values indicate that the model's predictions were closer to the actual house values.
+The model with the lower MSE and RMSE performed better because its predictions were, on average, closer to the actual median house values. MSE measures the average squared prediction error, while RMSE represents the prediction error in the same units as the target variable. Comparing these metrics allows us to determine which model generalized better to unseen test data.The Neural Network achieved lower error values than Linear Regression, suggesting that it was better able to capture relationships between the housing features and house values.
 
 ## Neural Network Loss Curve
 
@@ -131,4 +131,4 @@ The Neural Network performed better because it achieved lower MSE and RMSE value
 
 ### Loss Analysis
 
-The training loss decreased as the number of epochs increased, indicating that the neural network was learning from the training data. The largest reduction in loss occurred during the early epochs, followed by smaller improvements as training continued. This behavior suggests that the model was converging toward a stable solution and improving its predictive performance over time.
+The training loss consistently decreased throughout the training process, indicating that the neural network was learning patterns from the training data. The largest reduction in loss occurred during the early epochs, while later epochs showed smaller improvements. This behavior is expected because the model makes substantial corrections early in training and gradually converges toward a stable solution as learning progresses.
