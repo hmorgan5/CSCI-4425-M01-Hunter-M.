@@ -119,7 +119,7 @@ max       15.000100     52.000000    141.909091     34.066667  35682.000000   12
 | Model | MSE | RMSE |
 |-------|------|------|
 | Linear Regression | 0.5290 | 0.7273 |
-| Neural Network | 0.4295 | 0.6554 |
+| Neural Network | 0.4074 | 0.6382 |
 
 ## Analysis
 

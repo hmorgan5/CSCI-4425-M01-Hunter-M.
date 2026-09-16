@@ -7,28 +7,29 @@
 #   and loss curve plotting.
 # - All code was reviewed, tested, and integrated by the student.
 
-#### Part 1 ####
+#### Part 1: Data Loading and Exploration ####
 # Import necessary libraries
 import pandas as pd
 from sklearn.datasets import fetch_california_housing
 
-##### Part 2 ####
+##### Part 2: Data Preprocessing ####
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
-#### Part 3 ####
+#### Part 3: Model Building and Training ####
 from sklearn.linear_model import LinearRegression
 import torch
 import torch.nn as nn
 import torch.optim as optim
 
 # ADDED because I get a seg fault otherwise
+# Prevents a PyTorch segmentation fault encountered in the local macOS environment
 torch.set_num_threads(1)
 
-#### Part 4 ####
+#### Part 4: Model Evaluation ####
 from sklearn.metrics import mean_squared_error
 
-#### Part 1 ####
+#### Part 1: Data Loading and Exploration ####
 # Load the California housing dataset
 housingData = fetch_california_housing(as_frame=True)
 
@@ -105,9 +106,9 @@ with open("README.md", "w") as f:
     f.write(dataframe.describe().to_string())
     f.write("\n```\n\n")
 
-#### Part 2 ####
+#### Part 2: Data Preprocessing ####
 
-# Seperates the features and target variable
+# Separates the features and target variable
 X = dataframe.drop("MedHouseVal", axis=1)
 y = dataframe["MedHouseVal"]
 
@@ -131,7 +132,7 @@ print("Testing set size:", X_test.shape)
 print("\nScaled Training Data:")
 print(X_train_scaled[:5])
 
-#### Part 3 ####
+#### Part 3: Model Building and Training ####
 # Model 1
 # Train a Linear Regression model
 linearModel = LinearRegression()
@@ -216,7 +217,7 @@ for epoch in range(epochs):
     if (epoch + 1) % 10 == 0:
         print(f"Epoch [{epoch + 1}/{epochs}], " f"Loss: {loss.item():.4f}")
 
-#### Part 4 ####
+#### Part 4: Model Evaluation ####
 # Linear Regression #
 linear_predictions = linearModel.predict(X_test_scaled)
 
@@ -278,7 +279,7 @@ with open("README.md", "a") as f:
             "values indicate more accurate predictions.\n\n"
         )
 
-#### Part 5 ####
+#### Part 5: Analysis and Visualization ####
 import matplotlib.pyplot as plt
 
 # Plot the training loss curve for the neural network
