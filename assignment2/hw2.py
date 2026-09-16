@@ -86,15 +86,11 @@ with open("README.md", "w") as f:
     f.write("\n```\n\n")
 
     f.write("## First 5 Rows\n\n")
-    #f.write(dataframe.head().to_markdown())
-    f.write("```\n")
-    f.write(dataframe.head().to_string())
-    f.write("\n```\n")
+    f.write(dataframe.head().to_markdown())
     f.write("\n\n")
 
     f.write("## Summary Statistics\n\n")
-    #f.write(dataframe.describe().to_markdown())
-    f.write(dataframe.head().to_string())
+    f.write(dataframe.describe().to_markdown())
 
 #### Part 2 ####
 
