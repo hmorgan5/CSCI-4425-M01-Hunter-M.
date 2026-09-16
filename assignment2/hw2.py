@@ -269,7 +269,7 @@ with open("README.md", "a") as f:
             "its predictions were, on average, closer to the actual median house values."
             " MSE measures the average squared prediction error, while RMSE represents the " 
             "prediction error in the same units as the target variable. Comparing these "
-            "metrics allows us to determine which model generalized better to unseen test data.")
+            "metrics allows us to determine which model generalized better to unseen test data. ")
 
     if nn_rmse < linear_rmse:
         f.write(

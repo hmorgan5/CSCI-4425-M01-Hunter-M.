@@ -119,11 +119,11 @@ max       15.000100     52.000000    141.909091     34.066667  35682.000000   12
 | Model | MSE | RMSE |
 |-------|------|------|
 | Linear Regression | 0.5290 | 0.7273 |
-| Neural Network | 0.4473 | 0.6688 |
+| Neural Network | 0.4395 | 0.6630 |
 
 ## Analysis
 
-The model with the lower MSE and RMSE performed better because its predictions were, on average, closer to the actual median house values. MSE measures the average squared prediction error, while RMSE represents the prediction error in the same units as the target variable. Comparing these metrics allows us to determine which model generalized better to unseen test data.The Neural Network achieved lower error values than Linear Regression, suggesting that it was better able to capture relationships between the housing features and house values.
+The model with the lower MSE and RMSE performed better because its predictions were, on average, closer to the actual median house values. MSE measures the average squared prediction error, while RMSE represents the prediction error in the same units as the target variable. Comparing these metrics allows us to determine which model generalized better to unseen test data. The Neural Network achieved lower error values than Linear Regression, suggesting that it was better able to capture relationships between the housing features and house values.
 
 ## Neural Network Loss Curve
 
