@@ -57,6 +57,13 @@ with open("README.md", "w") as f:
 
     f.write("## How to Run\n\n")
 
+    f.write("## Required Packages\n\n")
+    f.write("- pandas\n")
+    f.write("- scikit-learn\n")
+    f.write("- torch\n")
+    f.write("- matplotlib\n")
+    f.write("- tabulate\n\n")
+
     f.write("1. Install the required libraries:\n\n")
 
     f.write("```bash\n")
@@ -86,11 +93,17 @@ with open("README.md", "w") as f:
     f.write("\n```\n\n")
 
     f.write("## First 5 Rows\n\n")
-    f.write(dataframe.head().to_markdown())
+    #f.write(dataframe.head().to_markdown())
+    f.write("```\n")
+    f.write(dataframe.head().to_string())
+    f.write("\n```\n\n")
     f.write("\n\n")
 
     f.write("## Summary Statistics\n\n")
-    f.write(dataframe.describe().to_markdown())
+    #f.write(dataframe.describe().to_markdown())
+    f.write("```\n")
+    f.write(dataframe.describe().to_string())
+    f.write("\n```\n\n")
 
 #### Part 2 ####
 
@@ -127,7 +140,7 @@ linearModel = LinearRegression()
 linearModel.fit(X_train_scaled, y_train)
 
 # Print message that model has been trained
-print("Linear Regression Model trained.")
+print("\nLinear Regression Model trained.")
 
 # Import numpy
 import numpy as np
@@ -166,6 +179,7 @@ input_size = X_train.shape[1]
 model = MLP(input_size)
 
 # Print the model architecture
+print("\nNeural Network Architecture:")
 print(model)
 
 # Define the loss function and optimizer
@@ -220,10 +234,12 @@ print("RMSE:", linear_rmse)
 # Neural Network #
 # Set the model to evaluation mode and disable gradient calculation for inference
 model.eval()
-with torch.no_grad():nn_predictions = model(X_test_tensor)
+with torch.no_grad():
+    nn_predictions = model(X_test_tensor)
 
 # Convert the predictions from PyTorch tensor to NumPy array for evaluation
-nn_predictions = nn_predictions.numpy()
+nn_predictions = nn_predictions.numpy().flatten()
+
 
 # Calculate Mean Squared Error (MSE) and Root Mean Squared Error (RMSE) for Neural Network
 nn_mse = mean_squared_error(y_test, nn_predictions)
@@ -274,8 +290,10 @@ plt.ylabel("MSE Loss")
 plt.grid(True)
 
 # Save the loss curve plot as a PNG file
+plt.tight_layout()
 plt.savefig("lossPlot.png")
 plt.close()
+
 
 with open("README.md", "a") as f:
 
