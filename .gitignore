@@ -78,3 +78,10 @@ yarn-error.log*
 
 # Git metadata backups
 *.orig
+
+# Assign3
+data/
+__pycache__/
+*.pyc
+assignment3-env/
+*.pth
