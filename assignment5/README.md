@@ -7,8 +7,8 @@
 Create and activate a Python virtual environment:
 
 ```bash
-python3 -m venv assignment3-env
-source assignment3-env/bin/activate
+python3 -m venv assignment5-env
+source assignment5-env/bin/activate
 ```
 
 Install the required dependencies:

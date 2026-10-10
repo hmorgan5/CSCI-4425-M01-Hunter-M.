@@ -8,9 +8,7 @@ import torch.nn as nn
 from torchvision.models import resnet18
 
 import time
-
 from sklearn.metrics import accuracy_score
-
 from data import get_loaders
 
 
@@ -25,9 +23,7 @@ torch.manual_seed(SEED)
 if torch.cuda.is_available():
     torch.cuda.manual_seed_all(SEED)
 
-device = torch.device(
-    "cuda" if torch.cuda.is_available() else "cpu"
-)
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 print("Random seed:", SEED)
 print("CUDA available:", torch.cuda.is_available())

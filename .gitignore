@@ -79,8 +79,10 @@ yarn-error.log*
 # Git metadata backups
 *.orig
 
-# Assignment 3
+# Assignment 5
 data/
+assignment5-env/
+# Previous naming convention
 assignment3-env/
 *.pt
 *.pth
