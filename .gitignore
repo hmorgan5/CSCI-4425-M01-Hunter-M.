@@ -59,7 +59,7 @@ __pycache__/
 *.pyo
 *.pyd
 .python-version
-.ipynb_checkpoints
+.ipynb_checkpoints/
 
 # Coverage reports
 coverage/
@@ -79,9 +79,8 @@ yarn-error.log*
 # Git metadata backups
 *.orig
 
-# Assign3
+# Assignment 3
 data/
-__pycache__/
-*.pyc
 assignment3-env/
+*.pt
 *.pth
