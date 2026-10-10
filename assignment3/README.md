@@ -286,19 +286,6 @@ ResNet-18 took the longest because it contains a deeper sequence of residual blo
 
 ### Saved Outputs
 
-The completed experiment produced:
-
-```text
-cnn_model.pth
-resnet18_model.pth
-unet_model.pth
-training_results.pth
-figures/training_samples.png
-figures/classification_training_loss.png
-figures/unet_training_loss.png
-figures/segmentation_results.png
-```
-
 The training script generates the following files locally:
 
 - `cnn_model.pth`
@@ -306,11 +293,19 @@ The training script generates the following files locally:
 - `unet_model.pth`
 - `training_results.pth`
 
+The three model files contain the final trained parameters.
+`training_results.pth` stores the training-loss histories, evaluation
+values, classifier predictions, test labels, random seed, batch size,
+learning rate, and epoch count.
+
 These generated `.pth` files are excluded from the repository. The
 required figures generated from the completed experiment are included
-in the `figures/` directory.
+in the `figures/` directory:
 
-The three model files contain the final trained parameters. `training_results.pth` stores the training-loss histories, evaluation values, classifier predictions, test labels, random seed, batch size, learning rate, and epoch count. The analysis script loaded the saved outputs, confirmed that each loss history contained 100 epochs, and generated the analysis figures successfully.
+- `figures/training_samples.png`
+- `figures/classification_training_loss.png`
+- `figures/unet_training_loss.png`
+- `figures/segmentation_results.png`
 
 ### Generative AI Acknowledgment
 
