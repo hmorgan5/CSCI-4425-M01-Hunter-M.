@@ -3,6 +3,7 @@
 # to help interpret the model requirements and structure the PyTorch
 # model and training code. I reviewed and tested the code.
 
+
 import torch
 import torch.nn as nn
 from torchvision.models import resnet18
