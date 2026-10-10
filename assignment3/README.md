@@ -41,6 +41,11 @@ Generate the training-loss and segmentation figures without retraining the model
 python analyze_results.py
 ```
 
+`train_models.py` trains and evaluates the models and creates
+`training_results.pth`. The `analyze_results.py` script then loads
+that generated file to create the training-loss and segmentation
+figures. Therefore, run `train_models.py` before `analyze_results.py`.
+
 ### Hardware and Device Configuration
 
 Training and evaluation were performed on an NVIDIA H100 NVL GPU. The program checked GPU availability with `torch.cuda.is_available()` and selected the device with `torch.device("cuda" if torch.cuda.is_available() else "cpu")`.
@@ -293,6 +298,17 @@ figures/classification_training_loss.png
 figures/unet_training_loss.png
 figures/segmentation_results.png
 ```
+
+The training script generates the following files locally:
+
+- `cnn_model.pth`
+- `resnet18_model.pth`
+- `unet_model.pth`
+- `training_results.pth`
+
+These generated `.pth` files are excluded from the repository. The
+required figures generated from the completed experiment are included
+in the `figures/` directory.
 
 The three model files contain the final trained parameters. `training_results.pth` stores the training-loss histories, evaluation values, classifier predictions, test labels, random seed, batch size, learning rate, and epoch count. The analysis script loaded the saved outputs, confirmed that each loss history contained 100 epochs, and generated the analysis figures successfully.
 
