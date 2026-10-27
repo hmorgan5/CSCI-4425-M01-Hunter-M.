@@ -1,9 +1,10 @@
 # Generative AI acknowledgment:
 # I used Microsoft 365 Copilot, based on the GPT-5 reasoning model,
-# to help structure the plotting and segmentation-visualization code.
-# I reviewed the code and generated the figures using my trained models.
+# to help structure the plotting code.
+# I reviewed the code and generated the figures using my training results.
 
-import os
+import json
+from pathlib import Path
 
 import matplotlib
 
@@ -11,36 +12,25 @@ import matplotlib
 matplotlib.use("Agg")
 
 import matplotlib.pyplot as plt
-import torch
-
-from data import get_loaders
-from train_models import SmallUNet
 
 
 # ---------------------------------------------------------
-# Setup
+# Setup paths
 # ---------------------------------------------------------
 
-BATCH_SIZE = 16
+SCRIPT_DIRECTORY = Path(__file__).resolve().parent
+RESULTS_FILE = SCRIPT_DIRECTORY / "training_results.json"
+FIGURES_DIRECTORY = SCRIPT_DIRECTORY / "figures"
 
-device = torch.device(
-    "cuda" if torch.cuda.is_available() else "cpu"
-)
-
-print("Selected device:", device)
-
-os.makedirs("figures", exist_ok=True)
+FIGURES_DIRECTORY.mkdir(exist_ok=True)
 
 
 # ---------------------------------------------------------
 # Load training results
 # ---------------------------------------------------------
 
-results = torch.load(
-    "training_results.pth",
-    map_location="cpu",
-    weights_only=False
-)
+with RESULTS_FILE.open("r", encoding="utf-8") as file:
+    results = json.load(file)
 
 cnn_losses = results["cnn_losses"]
 resnet_losses = results["resnet_losses"]
@@ -78,17 +68,19 @@ plt.legend()
 plt.grid(alpha=0.3)
 plt.tight_layout()
 
+classification_figure = (
+    FIGURES_DIRECTORY / "classification_training_loss.png"
+)
+
 plt.savefig(
-    "figures/classification_training_loss.png",
+    classification_figure,
     dpi=300,
     bbox_inches="tight"
 )
 
 plt.close()
 
-print(
-    "Saved figures/classification_training_loss.png"
-)
+print(f"Saved {classification_figure}")
 
 
 # ---------------------------------------------------------
@@ -112,122 +104,15 @@ plt.legend()
 plt.grid(alpha=0.3)
 plt.tight_layout()
 
+unet_figure = FIGURES_DIRECTORY / "unet_training_loss.png"
+
 plt.savefig(
-    "figures/unet_training_loss.png",
+    unet_figure,
     dpi=300,
     bbox_inches="tight"
 )
 
 plt.close()
 
-print("Saved figures/unet_training_loss.png")
-
-
-# ---------------------------------------------------------
-# Load the trained U-Net
-# ---------------------------------------------------------
-
-unet_model = SmallUNet().to(device)
-
-unet_state = torch.load(
-    "unet_model.pth",
-    map_location=device,
-    weights_only=True
-)
-
-unet_model.load_state_dict(unet_state)
-unet_model.eval()
-
-
-# ---------------------------------------------------------
-# Retrieve test images and predict their masks
-# ---------------------------------------------------------
-
-train_loader, test_loader = get_loaders(
-    batch_size=BATCH_SIZE
-)
-
-images, (labels, masks) = next(iter(test_loader))
-
-# Select the first three test samples.
-sample_images = images[:3]
-sample_masks = masks[:3]
-
-with torch.no_grad():
-    outputs = unet_model(sample_images.to(device))
-    predicted_masks = outputs.argmax(dim=1)
-
-
-# ---------------------------------------------------------
-# Visualize segmentation results
-# ---------------------------------------------------------
-
-fig, axes = plt.subplots(
-    nrows=3,
-    ncols=3,
-    figsize=(10, 10)
-)
-
-for index in range(3):
-    image_array = (
-        sample_images[index]
-        .cpu()
-        .permute(1, 2, 0)
-        .numpy()
-    )
-
-    ground_truth_array = (
-        sample_masks[index]
-        .cpu()
-        .numpy()
-    )
-
-    predicted_array = (
-        predicted_masks[index]
-        .cpu()
-        .numpy()
-    )
-
-    # Original image
-    axes[index, 0].imshow(image_array)
-    axes[index, 0].set_title(
-        f"Test Image {index + 1}"
-    )
-    axes[index, 0].axis("off")
-
-    # Ground-truth mask
-    axes[index, 1].imshow(
-        ground_truth_array,
-        cmap="viridis",
-        vmin=0,
-        vmax=2
-    )
-    axes[index, 1].set_title(
-        f"Ground Truth {index + 1}"
-    )
-    axes[index, 1].axis("off")
-
-    # Predicted mask
-    axes[index, 2].imshow(
-        predicted_array,
-        cmap="viridis",
-        vmin=0,
-        vmax=2
-    )
-    axes[index, 2].set_title(
-        f"Prediction {index + 1}"
-    )
-    axes[index, 2].axis("off")
-
-plt.tight_layout()
-
-plt.savefig(
-    "figures/segmentation_results.png",
-    dpi=300,
-    bbox_inches="tight"
-)
-
-plt.close()
-
-print("Saved figures/segmentation_results.png")
-print("Analysis figures generated successfully.")
+print(f"Saved {unet_figure}")
+print("Training-loss figures generated successfully.")
