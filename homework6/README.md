@@ -21,7 +21,6 @@ CSCI-4425-M01-Hunter-M.../
 │   ├── loss_curves.png
 │   ├── README.md
 │   └── requirements.txt
-├── group/
 └── .gitignore
 ```
 
@@ -31,26 +30,6 @@ The `data` directory contains the downloaded PyTorch Geometric dataset. The `gcn
 
 The repository-level `.gitignore` is located at the top level beside `homework6`, `assignment1`, `assignment2`, `assignment5`, and `group`.
 
-A suitable repository-root `.gitignore` is:
-
-```gitignore
-# Python
-__pycache__/
-*.py[cod]
-
-# Jupyter
-.ipynb_checkpoints/
-
-# macOS and editors
-.DS_Store
-.vscode/
-.idea/
-
-# Homework 6 generated files
-homework6/data/
-homework6/*.pt
-homework6_submission.zip
-```
 
 ## Installation and Execution
 
